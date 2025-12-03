@@ -64,8 +64,13 @@ Debido a la carga académica no pude avanzar tanto hoy
 
 Baquéiros DEV
 ¿Qué hice ayer?
+Me uní al repositorio creado por Jorge.
+Revisé los requerimientos del proyecto solicitados por la profesora.
+Participé en la reunión inicial.
 ¿Qué haré hoy?
+La clase gestion personal
 Impedimentos:
+Debido a la carga academica, no pude avanzar mucho hoy
 
 
 

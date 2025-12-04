@@ -90,5 +90,21 @@ Creare el documento de las reglas laborales
 Impedimentos:
 Debido a la carga academica, no podre avanzar mucho hoy
 
+Día 4 
+Jorge PO / SM
+¿Qué hice ayer?
+Crear el documento de las reglas laborales
+Y agregar los documentos iniciales que faltaban y crear carpetas
 
+¿Qué haré hoy?
+Las historias de usuario
+El sprint planning
+Trabajar en las historias 2, 5 y 12
+
+Si se completa el sprint:
+El sprint review
+El sprint restrospective
+
+Impedimentos:
+Falta de tiempo y carga académica
 

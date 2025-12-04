@@ -73,6 +73,15 @@ Impedimentos:
 Debido a la carga academica, no pude avanzar mucho hoy
 
 Dia 3
+Jorge PO / SM
+¿Qué hice ayer?
+Crear la estructura base del proyecto (carpetas y archivos iniciales, me faltaron algunos).
+¿Qué haré hoy?
+Agregar los archivos iniciales que me faltaron vacíos.
+Impedimentos:
+Debido a la carga academica, no podre avanzar mucho hoy.
+
+
 Baqueiro DEV
 ¿Qué hice ayer?
 Realice la clase de gestion personal

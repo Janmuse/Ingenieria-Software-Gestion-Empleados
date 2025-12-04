@@ -24,7 +24,7 @@ Participar en la reunión inicial.
 Impedimentos:
 Ninguno.
 
-Baquéiros (Developer (DEV))
+Baqueiro (Developer (DEV))
 ¿Qué hice ayer?
 
 N/A.
@@ -38,7 +38,7 @@ Impedimentos:
 Ninguno.
 
 Día 2 
-Jorge PO / SN
+Jorge PO / SM
 ¿Qué hice ayer?
 Creé el repositorio en GitHub.
 Subí el Main.py inicial.
@@ -51,7 +51,7 @@ Crear la carpeta de documentación del sprint y agregar los primeros documentos 
 Impedimentos:
 Debido a la carga académica no se pudo avanzar tanto hoy.
 
-Luis 
+Luis DEV
 ¿Qué hice ayer?
 Me uní al repositorio creado por Jorge.
 Revisé los requerimientos del proyecto solicitados por la profesora.
@@ -62,7 +62,7 @@ Planear la lógica del proyecto
 Impedimentos:
 Debido a la carga académica no pude avanzar tanto hoy 
 
-Baquéiros DEV
+Baqueiro DEV
 ¿Qué hice ayer?
 Me uní al repositorio creado por Jorge.
 Revisé los requerimientos del proyecto solicitados por la profesora.
@@ -72,6 +72,14 @@ La clase gestion personal
 Impedimentos:
 Debido a la carga academica, no pude avanzar mucho hoy
 
+Dia 3
+Baqueiro DEV
+¿Qué hice ayer?
+Realice la clase de gestion personal
+¿Qué haré hoy?
+Creare el documento de las reglas laborales
+Impedimentos:
+Debido a la carga academica, no podre avanzar mucho hoy
 
 
 

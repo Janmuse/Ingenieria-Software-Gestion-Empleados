@@ -108,3 +108,22 @@ El sprint restrospective
 Impedimentos:
 Falta de tiempo y carga académica
 
+
+Baqueiro DEV
+¿Qué hice ayer?
+Cree el documento de las reglas laborales
+¿Qué haré hoy?
+Las historias de usuario
+El sprint planning
+Trabajar en las historias 2, 5 y 12
+
+Si se completa el sprint:
+El sprint review
+El sprint restrospective
+
+Impedimentos:
+Falta de tiempo y carga académica
+
+
+
+

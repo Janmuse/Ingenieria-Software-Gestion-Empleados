@@ -81,6 +81,13 @@ Agregar los archivos iniciales que me faltaron vacíos.
 Impedimentos:
 Debido a la carga academica, no podre avanzar mucho hoy.
 
+Luis DEV
+¿Qué hice ayer?
+Contribuí en la planeación del proyecto
+¿Qué haré hoy?
+Contactar con el equipo
+Impedimentos:
+Debido a mis responsabilidades, no pude avanzar mucho hoy
 
 Baqueiro DEV
 ¿Qué hice ayer?
@@ -108,6 +115,14 @@ El sprint restrospective
 Impedimentos:
 Falta de tiempo y carga académica
 
+Luis DEV
+¿Qué hice ayer?
+Coordine al equipo en linea
+
+¿Qué haré hoy?
+El gui_main que forma parte de las 3 historias de usuario
+Impedimentos:
+Debido a mis responsabilidades, delegué partes del proyecto
 
 Baqueiro DEV
 ¿Qué hice ayer?

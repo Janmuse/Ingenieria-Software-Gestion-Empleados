@@ -1,4 +1,12 @@
 Historias completadas 
+HU-01: Inicio de Sesión en el Sistema Prioridad: Alta Story Points: 3 Como administrador/supervisor/empleado Quiero iniciar sesión con mi usuario y contraseña Para acceder al sistema según mi rol y permisos asignados
+
+Criterios de Aceptación: 
+El sistema debe validar que el usuario y contraseña sean correctos antes de permitir el acceso
+El sistema debe mostrar un mensaje de error cuando las credenciales sean incorrectas
+El sistema debe redirigir al usuario al menú correspondiente según su rol (administrador, supervisor o empleado)
+El sistema debe ocultar la contraseña mientras se escribe (mostrar asteriscos)
+
 HU-05: Visualizar Lista de Empleados 
 Prioridad: Alta 
 Story Points: 3 

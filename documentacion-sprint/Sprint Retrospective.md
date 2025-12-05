@@ -12,6 +12,6 @@ M2: Hacer la documentación en el orden correcto.
 
 Responsables de cada mejora:
 M1: Jorge
-M1: Jorge
+M2: Jorge
 
 Me comprometo junto con mi equipo a cumplir con estas acciones de mejora 

@@ -1,4 +1,6 @@
 # utils/auth.py
+import hashlib
+
 def hash_password(password):
     """Encripta la contraseña usando SHA256"""
     return hashlib.sha256(password.encode()).hexdigest()

@@ -106,7 +106,7 @@ Y agregar los documentos iniciales que faltaban y crear carpetas
 ¿Qué haré hoy?
 Las historias de usuario
 El sprint planning
-Trabajar en las historias 2, 5 y 12
+Trabajar en las historias 1, 2, 5 y 12
 
 Si se completa el sprint:
 El sprint review
@@ -130,7 +130,7 @@ Cree el documento de las reglas laborales
 ¿Qué haré hoy?
 Las historias de usuario
 El sprint planning
-Trabajar en las historias 2, 5 y 12
+Trabajar en las historias 1, 2, 5 y 12
 
 Si se completa el sprint:
 El sprint review

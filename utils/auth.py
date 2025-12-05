@@ -14,7 +14,7 @@ def validar_credenciales(usuario, contraseña):
     # Busca al usuario por nombre y contraseña
     user_data = usuarios_collection.find_one({
         "usuario": usuario,
-        "contraseña": contraseña
+        "contraseña": hash_password(contraseña)
     })
 
     if user_data:

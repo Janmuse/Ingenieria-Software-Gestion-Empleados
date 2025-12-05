@@ -3,6 +3,7 @@ Sprint Goal
 "Implementar la gestión completa de empleados (CRUD) con control de acceso por roles, permitiendo al administrador visualizar, agregar y gestionar empleados de forma segura."
 
 Historias de Usuario Seleccionadas
+HU-01: Inicio de Sesión en el Sistema 
 HU-02: Agregar Empleados
 HU-05: Visualizar Lista de Empleados
 HU-12: Control de Acceso por Roles
@@ -11,7 +12,7 @@ Total Story Points del Sprint: 13
 
 Estimaciones
 utils/auth.py 
-[HU-12] Implementar autenticación y validación de credenciales                     20 minutos Baqueiro
+[HU-12] [HU-1] Implementar autenticación y validación de credenciales                     20 minutos Baqueiro
 
 gui_login.py 
 [HU-12] Crear ventana de login con validación por roles                            20 minutos Andrade

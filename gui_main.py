@@ -161,7 +161,14 @@ class App(tk.Tk):
             ventana.destroy()
 
         ttk.Button(ventana, text="Guardar", command=guardar).pack(pady=20)
-
+        
+        def placeholder_registro(self):
+            messagebox.showinfo("En desarrollo", 
+                                "La funcionalidad de Registro de Entrada/Salida estará disponible próximamente.")
+    
+        def placeholder_reporte(self):
+            messagebox.showinfo("En desarrollo", 
+                                "La funcionalidad de Reportes Mensuales estará disponible próximamente.")
 
 if __name__ == "__main__":
     app = App()

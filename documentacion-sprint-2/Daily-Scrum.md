@@ -1,3 +1,4 @@
+Día 1
 Jorge PO/SM
 ¿Qué hice ayer?
 N/A

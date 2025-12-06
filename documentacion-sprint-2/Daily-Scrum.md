@@ -30,4 +30,14 @@ N/A
 Funciones del sprint 2
 
 Impedimentos
-Responsabilidades personales
+Responsabilidades personales 
+
+Día 2
+Jorge PO/SM
+¿Qué hice ayer?
+N/A
+
+¿Qué haré hoy?
+La historia de usuario correspondiente a modificar los empleados
+
+Impedimentos: Otros proyectos y responsabilidades académicas

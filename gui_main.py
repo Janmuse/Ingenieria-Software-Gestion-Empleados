@@ -113,6 +113,22 @@ class App(tk.Tk):
 
     def agregar_empleado(self):
         self.abrir_formulario_edicion()
+    
+    def eliminar_empleado(self):
+        selected = self.tree.focus()
+        if not selected:
+            messagebox.showwarning("Seleccionar", "Por favor, seleccione un empleado.")
+            return
+
+        valores = self.tree.item(selected, 'values')
+        dpi_seleccionado = valores[0]
+
+        if messagebox.askyesno("Eliminar", f"¿Está seguro de eliminar a {valores[1]}?"):
+            conexion = ConexionMongoDB()
+            empleados = conexion.get_collection("empleados")
+            empleados.delete_one({"dpi": dpi_seleccionado})
+            self.cargar_empleados()
+            messagebox.showinfo("Éxito", "Empleado eliminado correctamente.")
 
     def abrir_formulario_edicion(self, dpi=None):
         ventana = tk.Toplevel(self)

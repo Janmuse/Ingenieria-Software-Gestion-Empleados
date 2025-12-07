@@ -3,7 +3,9 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from conexion.conexion_mongo import ConexionMongoDB
 from clases.empleado import Empleado
-
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.pagesizes import letter
 
 class App(tk.Tk):
     def __init__(self):
@@ -71,11 +73,13 @@ class App(tk.Tk):
 
         btn_agregar = ttk.Button(btn_frame, text="Agregar Empleado", width=25, command=self.agregar_empleado)
         btn_editar = ttk.Button(btn_frame, text="Editar Seleccionado", width=25, command=self.editar_empleado)
+        btn_pdf = ttk.Button(btn_frame, text="Exportar a PDF", width=25, command=self.exportar_a_pdf)
         btn_eliminar = ttk.Button(btn_frame, text="Eliminar Seleccionado", width=25, command=self.eliminar_empleado)
         
         btn_agregar.grid(row=0, column=0, padx=10)
         btn_editar.grid(row=0, column=1, padx=10)
-        btn_eliminar.grid(row=0, column=2, padx=10)
+        btn_pdf.grid(row=0, column=2, padx=10)
+        btn_eliminar.grid(row=0, column=3, padx=10)
 
 
         #Tabla de empleados
@@ -208,14 +212,56 @@ class App(tk.Tk):
             ventana.destroy()
 
         ttk.Button(ventana, text="Guardar", command=guardar).pack(pady=20)
-            
-        def placeholder_registro(self):
-            messagebox.showinfo("En desarrollo", 
-                                "La funcionalidad de Registro de Entrada/Salida estará disponible próximamente.")
 
-        def placeholder_reporte(self):
-            messagebox.showinfo("En desarrollo", 
-                                "La funcionalidad de Reportes Mensuales estará disponible próximamente.")
+    def exportar_a_pdf(self):
+        conexion = ConexionMongoDB()
+        empleados = list(conexion.get_collection("empleados").find())
+
+        if not empleados:
+            messagebox.showwarning("Advertencia", "No hay empleados registrados.")
+            return
+
+        archivo = "lista_empleados.pdf"
+        doc = SimpleDocTemplate(archivo, pagesize=letter)
+        estilo = getSampleStyleSheet()
+        elementos = []
+
+        elementos.append(Paragraph("Lista de Empleados", estilo["Title"]))
+        elementos.append(Spacer(1, 24))
+
+        data = [["DPI", "Nombre", "Cargo", "Salario/Hora"]]
+        for emp in empleados:
+            data.append([
+                emp["dpi"],
+                emp["nombre"],
+                emp["cargo"],
+                f"${emp['salario_hora']:.2f}"
+            ])
+
+        tabla = Table(data)
+        tabla.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), '#4CAF50'),
+            ('TEXTCOLOR', (0, 0), (-1, 0), 'white'),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('FONTSIZE', (0, 0), (-1, 0), 12),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+            ('BACKGROUND', (0, 1), (-1, -1), '#f9f9f9'),
+            ('GRID', (0, 0), (-1, -1), 1, '#cccccc')
+        ]))
+
+        elementos.append(tabla)
+        doc.build(elementos)
+        messagebox.showinfo("PDF Generado", f"Archivo guardado como '{archivo}'")
+
+
+            
+    def placeholder_registro(self):
+        messagebox.showinfo("En desarrollo", 
+                            "La funcionalidad de Registro de Entrada/Salida estará disponible próximamente.")
+
+    def placeholder_reporte(self):
+        messagebox.showinfo("En desarrollo", 
+                            "La funcionalidad de Reportes Mensuales estará disponible próximamente.")
 
 
 if __name__ == "__main__":

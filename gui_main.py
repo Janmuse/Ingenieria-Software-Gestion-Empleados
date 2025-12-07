@@ -71,7 +71,10 @@ class App(tk.Tk):
 
         btn_agregar = ttk.Button(btn_frame, text="Agregar Empleado", width=25, 
                                  command=self.agregar_empleado)
+        btn_eliminar = ttk.Button(btn_frame, text="Eliminar Seleccionado", width=25, command=self.eliminar_empleado)
         btn_agregar.grid(row=0, column=0, padx=10)
+        btn_eliminar.grid(row=0, column=1, padx=10)
+
 
         #Tabla de empleados
         self.tree = ttk.Treeview(ventana_lista,
@@ -162,13 +165,14 @@ class App(tk.Tk):
 
         ttk.Button(ventana, text="Guardar", command=guardar).pack(pady=20)
         
-        def placeholder_registro(self):
-            messagebox.showinfo("En desarrollo", 
-                                "La funcionalidad de Registro de Entrada/Salida estará disponible próximamente.")
-    
-        def placeholder_reporte(self):
-            messagebox.showinfo("En desarrollo", 
-                                "La funcionalidad de Reportes Mensuales estará disponible próximamente.")
+    def placeholder_registro(self):
+        messagebox.showinfo("En desarrollo", 
+                            "La funcionalidad de Registro de Entrada/Salida estará disponible próximamente.")
+
+    def placeholder_reporte(self):
+        messagebox.showinfo("En desarrollo", 
+                            "La funcionalidad de Reportes Mensuales estará disponible próximamente.")
+
 
 if __name__ == "__main__":
     app = App()

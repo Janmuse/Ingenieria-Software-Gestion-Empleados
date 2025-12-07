@@ -18,8 +18,13 @@ Elimina solo si el usuario confirma
 Actualiza automáticamente la lista
 Muestra mensaje de éxito
 
-HU-06: Exportar lista de Empleados a PDF 
-Criterios de Aceptación: Genera archivo PDF con todos los empleados Incluye título "Lista de Empleados" y tabla formateada Incluye columnas: DPI, Nombre, Cargo y Salario/Hora Guarda con nombre "lista_empleados.pdf" Muestra mensaje de confirmación
+HU-06: Exportar Lista de Empleados a PDF Prioridad: Baja Story Points: 3 Como administrador quiero exportar la lista de empleados a PDF Para generar reportes físicos o compartirlos
+
+Criterios de Aceptación: 
+Genera archivo PDF con todos los empleados 
+Incluye título "Lista de Empleados" y tabla formateada 
+Incluye columnas: DPI, Nombre, Cargo y Salario/Hora Guarda con nombre "lista_empleados.pdf" 
+Muestra mensaje de confirmación
 
 Total Story Points del Sprint: 8
 

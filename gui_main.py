@@ -69,11 +69,13 @@ class App(tk.Tk):
         btn_frame = tk.Frame(ventana_lista, bg="#ffffff")
         btn_frame.pack(pady=10)
 
-        btn_agregar = ttk.Button(btn_frame, text="Agregar Empleado", width=25, 
-                                 command=self.agregar_empleado)
+        btn_agregar = ttk.Button(btn_frame, text="Agregar Empleado", width=25, command=self.agregar_empleado)
+        btn_editar = ttk.Button(btn_frame, text="Editar Seleccionado", width=25, command=self.editar_empleado)
         btn_eliminar = ttk.Button(btn_frame, text="Eliminar Seleccionado", width=25, command=self.eliminar_empleado)
+        
         btn_agregar.grid(row=0, column=0, padx=10)
-        btn_eliminar.grid(row=0, column=1, padx=10)
+        btn_editar.grid(row=0, column=1, padx=10)
+        btn_eliminar.grid(row=0, column=2, padx=10)
 
 
         #Tabla de empleados
@@ -93,6 +95,9 @@ class App(tk.Tk):
         self.tree.pack(padx=20, pady=10, fill="both", expand=True)
 
         self.cargar_empleados()
+
+        # Doble clic para editar
+        self.tree.bind("<Double-1>", lambda event: self.editar_empleado())
 
     def cargar_empleados(self):
         """Carga los empleados desde MongoDB"""
@@ -114,6 +119,16 @@ class App(tk.Tk):
     def agregar_empleado(self):
         self.abrir_formulario_edicion()
     
+    def editar_empleado(self):
+        selected = self.tree.focus()
+        if not selected:
+            messagebox.showwarning("Seleccionar", "Por favor, seleccione un empleado.")
+            return
+
+        valores = self.tree.item(selected, 'values')
+        dpi_seleccionado = valores[0]
+        self.abrir_formulario_edicion(dpi_seleccionado)
+
     def eliminar_empleado(self):
         selected = self.tree.focus()
         if not selected:
@@ -130,7 +145,7 @@ class App(tk.Tk):
             self.cargar_empleados()
             messagebox.showinfo("Éxito", "Empleado eliminado correctamente.")
 
-    def abrir_formulario_edicion(self, dpi=None):
+    def abrir_formulario_edicion(self, dpi_original=None):
         ventana = tk.Toplevel(self)
         ventana.title("Agregar Empleado")
         ventana.geometry("500x400")
@@ -152,6 +167,16 @@ class App(tk.Tk):
         salario_entry = tk.Entry(ventana, font=("Arial", 12))
         salario_entry.pack(pady=5)
 
+        if dpi_original:
+            # Cargar datos existentes
+            conexion = ConexionMongoDB()
+            empleado_data = conexion.get_collection("empleados").find_one({"dpi": dpi_original})
+            if empleado_data:
+                nombre_entry.insert(0, empleado_data["nombre"])
+                dpi_entry.insert(0, empleado_data["dpi"])
+                cargo_entry.insert(0, empleado_data["cargo"])
+                salario_entry.insert(0, str(empleado_data["salario_hora"]))
+
         def guardar():
             nombre = nombre_entry.get()
             dpi = dpi_entry.get()
@@ -172,22 +197,25 @@ class App(tk.Tk):
             conexion = ConexionMongoDB()
             empleados = conexion.get_collection("empleados")
             
-            empleados.insert_one(empleado.to_dict())
-            
-            messagebox.showinfo("Éxito", "Empleado agregado correctamente.")
+            if dpi_original:
+                empleados.update_one({"dpi": dpi_original}, {"$set": empleado.to_dict()})
+                messagebox.showinfo("Éxito", "Empleado actualizado correctamente.")
+            else:
+                empleados.insert_one(empleado.to_dict())
+                messagebox.showinfo("Éxito", "Empleado agregado correctamente.")
 
             self.cargar_empleados()
             ventana.destroy()
 
         ttk.Button(ventana, text="Guardar", command=guardar).pack(pady=20)
-        
-    def placeholder_registro(self):
-        messagebox.showinfo("En desarrollo", 
-                            "La funcionalidad de Registro de Entrada/Salida estará disponible próximamente.")
+            
+        def placeholder_registro(self):
+            messagebox.showinfo("En desarrollo", 
+                                "La funcionalidad de Registro de Entrada/Salida estará disponible próximamente.")
 
-    def placeholder_reporte(self):
-        messagebox.showinfo("En desarrollo", 
-                            "La funcionalidad de Reportes Mensuales estará disponible próximamente.")
+        def placeholder_reporte(self):
+            messagebox.showinfo("En desarrollo", 
+                                "La funcionalidad de Reportes Mensuales estará disponible próximamente.")
 
 
 if __name__ == "__main__":

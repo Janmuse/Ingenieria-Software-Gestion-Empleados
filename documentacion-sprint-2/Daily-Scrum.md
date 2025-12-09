@@ -35,8 +35,9 @@ Responsabilidades personales
 Día 2
 Jorge PO/SM
 ¿Qué hice ayer?
-N/A
-
+Coordinar la planeacion del sprint 2 con la realizacion
+de las historias de usuario
+Participar en la documentación
 ¿Qué haré hoy?
 La historia de usuario correspondiente a modificar los empleados
 

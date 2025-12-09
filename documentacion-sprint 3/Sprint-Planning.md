@@ -77,5 +77,5 @@ Probar reportes y exportación de PDFs
 Validar formatos y resultados
 Ajustar detalles visuales
 
-Jorge y Baqueiro - Documentación(3h)
+Jorge y Baqueiro - Documentación (3h)
 Documentar lo que haga falta

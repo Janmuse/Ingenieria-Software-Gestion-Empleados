@@ -42,3 +42,25 @@ Participar en la documentación
 La historia de usuario correspondiente a modificar los empleados
 
 Impedimentos: Otros proyectos y responsabilidades académicas
+
+
+Baqueiro DEV
+¿Qué hice ayer?
+Ayude en la planeacion del sprint 2 con la realizacion
+de las historias de usuario
+
+¿Qué haré hoy?
+Eliminar registros de la lista de empleados
+
+Impedimentos: Otros proyectos y responsabilidades académicas
+
+
+Luis DEV
+¿Que hice ayer?
+Funciones del sprint 2
+
+¿Qué haré hoy?
+Exportar la lista de empleados a PDF
+
+Impedimentos: Otros proyectos y responsabilidades académicas
+

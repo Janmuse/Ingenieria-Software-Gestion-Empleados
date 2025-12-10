@@ -42,4 +42,4 @@ Participar en la reunión
 ¿Que haré hoy?  
 Avanzar el modulo para la funcionalidad
 de los reportes
-Impedimentos: No hubo
+Impedimentos: No huboo

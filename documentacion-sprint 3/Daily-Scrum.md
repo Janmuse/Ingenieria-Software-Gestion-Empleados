@@ -33,3 +33,13 @@ Participar en la reunión
 Avanzar en el módulo de la aplicación móvi
 Generar el módulo de gui_registro
 Impedimentos: No hubo
+
+Baqueiro DEV
+¿Qué hice ayer?
+Participe en la reunión
+Ayude en la planeacion del sprint 3 
+Participar en la reunión
+¿Que haré hoy?  
+Avanzar el modulo para la funcionalidad
+de los reportes
+Impedimentos: No hubo

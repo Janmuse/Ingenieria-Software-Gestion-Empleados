@@ -56,14 +56,14 @@ gui_registro.py: Crear ventana completa con selector de empleados y calendario
 Implementar cálculos de horas y pago según tipo de día
 Integrar con gui_main.py
 
-Jorge - HU-10 + HU-11: Sistema de Respaldos (3h)
+Jorge - HU-10 + HU-11: Sistema de Respaldos (11h)
 backup_mongodb.py: Implementar realizar_respaldo() y restaurar_respaldo()
 gui_main.py: Integrar botones y funcionalidad de respaldos
 
-Baqueiro - HU-09: Exportar PDF (3h)
+Baqueiro - HU-09: Exportar PDF (11h)
 gui_reporte.py: Implementar función exportar_a_pdf() con ReportLab
 
-Luis - HU-08: Generar Reporte horas trabajadas (3h)
+Luis - HU-08: Generar Reporte horas trabajadas (7h)
 gui_reporte.py: Crear ventana con filtros (empleados, rango, fecha)
 Implementar consultas MongoDB y cálculo de totales
 

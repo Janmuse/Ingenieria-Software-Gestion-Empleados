@@ -1,9 +1,9 @@
 # gui_main.py
 import os
-
 import sys
 import tkinter as tk
 from tkinter import ttk, messagebox
+from datetime import datetime
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import letter
@@ -65,7 +65,7 @@ class App(tk.Tk):
 
         if rol in ["administrador", "supervisor", "empleado"]:
             ttk.Button(btn_frame, text="Generar Reporte Mensual", width=30,
-                       command=self.placeholder_reporte).grid(row=2, column=0, padx=10, pady=10)
+                       command=self.abrir_ventana_reporte).grid(row=2, column=0, padx=10, pady=10)
             
         if rol == "administrador":
             ttk.Button(btn_frame, text="Restaurar Respaldo", width=30,
@@ -290,13 +290,12 @@ class App(tk.Tk):
         messagebox.showinfo("PDF Generado", f"Archivo guardado como '{archivo}'")
 
     def abrir_registro_entrada_salida(self):
-            from gui_registro import abrir_registro_entrada_salida
-            abrir_registro_entrada_salida(self)
+        from gui_registro import abrir_registro_entrada_salida
+        abrir_registro_entrada_salida(self)
             
-    def placeholder_reporte(self):
-        messagebox.showinfo("En desarrollo", 
-                            "La funcionalidad de Reportes Mensuales estará disponible próximamente.")
-
+    def abrir_ventana_reporte(self):
+        from gui_reporte import abrir_ventana_reporte
+        abrir_ventana_reporte(self)
 
 if __name__ == "__main__":
     app = App()

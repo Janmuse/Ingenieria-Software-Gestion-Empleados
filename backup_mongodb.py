@@ -1,4 +1,4 @@
-# backup_utils.py
+# backup_mongodb.py
 from pymongo import MongoClient
 import os
 import json
@@ -25,6 +25,8 @@ def realizar_respaldo():
 
     limpiar_antiguos_respaldo(directorio_backup)
     print(" Respaldo realizado exitosamente")
+    print("Guardado en:", os.path.abspath(directorio_backup))
+
 
 
 def limpiar_antiguos_respaldo(directorio):

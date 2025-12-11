@@ -1,4 +1,4 @@
- # gui_reporte.py
+# gui_reporte.py
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime, timedelta
@@ -195,6 +195,10 @@ def abrir_ventana_reporte(app_root):
                 "total_pago": round(total_pago, 2)
             })
 
+        exportar_a_pdf(resultados_completos, ventana_reporte)
+
+    ttk.Button(ventana_reporte, text="Exportar a PDF", command=exportar).pack(pady=10)
+
 
 def mostrar_resultados(root, resultados, app_root):
     ventana_detalle = tk.Toplevel(app_root)
@@ -222,11 +226,80 @@ def mostrar_resultados(root, resultados, app_root):
             res["nombre"],
             res["total_horas_normales"],
             res["total_horas_extras"],
-            f"$ {res['total_pago']:.2f}"
+            f"Q{res['total_pago']:.2f}"
         ))
 
     tree.pack(padx=20, pady=10, fill="both", expand=True)
 
     ttk.Button(ventana_detalle, text="Cerrar", command=ventana_detalle.destroy).pack(pady=10)
+
+
+def exportar_a_pdf(resultados, root_window):
+    archivo = "reporte_personal_detallado.pdf"
+    doc = SimpleDocTemplate(archivo, pagesize=letter)
+    estilo = getSampleStyleSheet()
+    elementos = []
+
+    elementos.append(Paragraph("Reporte Detallado de Horas Trabajadas", estilo["Title"]))
+    elementos.append(Spacer(1, 24))
+
+    # Tabla resumen general
+    data_resumen = [["Empleado", "Horas Normales", "Horas Extras", "Pago Total"]]
+    for res in resultados:
+        data_resumen.append([
+            res["nombre"],
+            str(res["total_horas_normales"]),
+            str(res["total_horas_extras"]),
+            f"Q{res['total_pago']:.2f}"
+        ])
+
+    tabla_resumen = Table(data_resumen)
+    tabla_resumen.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), '#4CAF50'),
+        ('TEXTCOLOR', (0, 0), (-1, 0), 'white'),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTSIZE', (0, 0), (-1, 0), 12),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), '#f9f9f9'),
+        ('GRID', (0, 0), (-1, -1), 1, '#cccccc')
+    ]))
+    elementos.append(tabla_resumen)
+    elementos.append(Spacer(1, 30))
+
+    # Detalles por empleado
+    registros_collection = ConexionMongoDB().get_collection("registros")
+
+    for res in resultados:
+        elementos.append(Paragraph(f"Detalles de {res['nombre']} ({res['dpi']})", estilo["Heading2"]))
+        data_detalle = [["Fecha", "Entrada", "Salida", "Normales", "Extras", "Tipo Día", "Pago"]]
+
+        filtro = {"dpi_empleado": res["dpi"]}
+        registros = registros_collection.find(filtro).sort("fecha", 1)
+
+        for reg in registros:
+            data_detalle.append([
+                reg["fecha"],
+                reg["hora_entrada"],
+                reg["hora_salida"],
+                str(reg["horas_normales"]),
+                str(reg["horas_extras"]),
+                reg.get("tipo_dia", "No definido"),
+                f"Q{reg['pago_total']:.2f}"
+            ])
+
+        tabla_detalle = Table(data_detalle)
+        tabla_detalle.setStyle(TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), '#808080'),
+            ('TEXTCOLOR', (0, 0), (-1, 0), 'white'),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('FONTSIZE', (0, 0), (-1, 0), 11),
+            ('BACKGROUND', (0, 1), (-1, -1), '#ffffff'),
+            ('GRID', (0, 0), (-1, -1), 1, '#cccccc')
+        ]))
+        elementos.append(tabla_detalle)
+        elementos.append(Spacer(1, 20))
+
+    doc.build(elementos)
+    messagebox.showinfo("PDF Generado", f"Archivo guardado como '{archivo}'")
 
 

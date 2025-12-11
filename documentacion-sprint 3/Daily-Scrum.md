@@ -65,6 +65,6 @@ Baqueiro DEV
 ¿Qué hice ayer?
 Avance el modulo para la funcionalidad de los reportes
 ¿Que haré hoy? 
-Completarlo
+Completarlo para que exporte a PDF
 Impedimentos: 
 No hubo

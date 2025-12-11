@@ -226,7 +226,7 @@ def mostrar_resultados(root, resultados, app_root):
             res["nombre"],
             res["total_horas_normales"],
             res["total_horas_extras"],
-            f"Q{res['total_pago']:.2f}"
+            f"$ {res['total_pago']:.2f}"
         ))
 
     tree.pack(padx=20, pady=10, fill="both", expand=True)
@@ -250,7 +250,7 @@ def exportar_a_pdf(resultados, root_window):
             res["nombre"],
             str(res["total_horas_normales"]),
             str(res["total_horas_extras"]),
-            f"Q{res['total_pago']:.2f}"
+            f"$ {res['total_pago']:.2f}"
         ])
 
     tabla_resumen = Table(data_resumen)
@@ -284,7 +284,7 @@ def exportar_a_pdf(resultados, root_window):
                 str(reg["horas_normales"]),
                 str(reg["horas_extras"]),
                 reg.get("tipo_dia", "No definido"),
-                f"Q{reg['pago_total']:.2f}"
+                f"$ {reg['pago_total']:.2f}"
             ])
 
         tabla_detalle = Table(data_detalle)

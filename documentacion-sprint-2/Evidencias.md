@@ -27,4 +27,4 @@ https://github.com/user-attachments/assets/23a42fc8-8e77-4e7e-871b-2eb0360a9f74
 Prueba de exportar a PDF
 https://github.com/user-attachments/assets/040f129f-02f1-4693-b071-4fa0e009a0ef
 
-Para más evidencias véase minutos de reunión
+Para más evidencias véase minutas de reunión

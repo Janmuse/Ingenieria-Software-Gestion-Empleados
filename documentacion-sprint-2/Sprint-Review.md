@@ -21,16 +21,18 @@ Incluye columnas: DPI, Nombre, Cargo y Salario/Hora
 Guarda con nombre "lista_empleados.pdf" 
 Muestra mensaje de confirmación
 
-Comparación Planeado /Logrado 
-HU-06: Exportar Lista de Empleados a PDF| Lograda, se pueden exportar a PDF la lista de empleados
-HU-04: Eliminar empleados | Lograda, se pueden eliminar empleados seleccionadas
-HU-03: Editar Empleados | Lograda, se pueden editar los empleados seleccionados
-
 Criterios de Aceptación: 
 Genera archivo PDF con todos los empleados 
 Incluye título "Lista de Empleados" y tabla formateada 
 Incluye columnas: DPI, Nombre, Cargo y Salario/Hora Guarda con nombre "lista_empleados.pdf" 
 Muestra mensaje de confirmación
+
+Comparación Planeado /Logrado 
+HU-06: Exportar Lista de Empleados a PDF| Lograda, se pueden exportar a PDF la lista de empleados
+HU-04: Eliminar empleados | Lograda, se pueden eliminar empleados seleccionadas
+HU-03: Editar Empleados | Lograda, se pueden editar los empleados seleccionados
+
+
 
 Evidencias del incremento funcional
 Prueba de borrar empleados

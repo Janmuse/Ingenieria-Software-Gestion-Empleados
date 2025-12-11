@@ -1,11 +1,21 @@
 # gui_main.py
+import os
+import sys
 import tkinter as tk
 from tkinter import ttk, messagebox
-from conexion.conexion_mongo import ConexionMongoDB
-from clases.empleado import Empleado
+from datetime import datetime
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import letter
+
+#Importamos clases existentes
+from conexion.conexion_mongo import ConexionMongoDB 
+from clases.empleado import Empleado
+from backup_mongodb import realizar_respaldo, restaurar_respaldo
+
+#carpeta raiz 
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 
 class App(tk.Tk):
     def __init__(self):
@@ -51,14 +61,39 @@ class App(tk.Tk):
 
         if rol in ["administrador", "supervisor"]:
             ttk.Button(btn_frame, text="Registrar Entrada/Salida", width=30,
-                       command=self.placeholder_registro).grid(row=1, column=0, padx=10, pady=10)
+                       command=self.abrir_registro_entrada_salida).grid(row=1, column=0, padx=10, pady=10)
 
         if rol in ["administrador", "supervisor", "empleado"]:
             ttk.Button(btn_frame, text="Generar Reporte Mensual", width=30,
-                       command=self.placeholder_reporte).grid(row=2, column=0, padx=10, pady=10)
+                       command=self.abrir_ventana_reporte).grid(row=2, column=0, padx=10, pady=10)
+            
+        if rol == "administrador":
+            ttk.Button(btn_frame, text="Restaurar Respaldo", width=30,
+               command=self.restaurar_respaldo).grid(row=5, column=0, padx=10, pady=10)
     
-        ttk.Button(btn_frame, text="Salir", width=30, 
-                   command=self.destroy).grid(row=3, column=0, padx=10, pady=10)
+        ttk.Button(btn_frame, text="Salir", width=30, command=self.destroy).grid(row=3, column=0, padx=10, pady=10)
+        ttk.Button(btn_frame, text="Salir con respaldo", width=30, command=self.salir_con_respaldo).grid(row=4, column=0, padx=10, pady=10)
+
+    def salir_con_respaldo(self):
+        from backup_mongodb import realizar_respaldo
+        realizar_respaldo()
+        self.destroy()
+    
+    def restaurar_respaldo(self):
+     from tkinter import filedialog
+     ruta = filedialog.askopenfilename(
+         title="Seleccionar archivo de respaldo",
+         initialdir="respaldos/",
+         filetypes=[("Archivos JSON", "*.json")]
+     )
+     if not ruta:
+        return
+
+     resultado = restaurar_respaldo(ruta)
+     if resultado:
+         messagebox.showinfo("Éxito", "Respaldo restaurado correctamente.")
+     else:
+         messagebox.showerror("Error", "No se pudo restaurar el respaldo.")
 
     def abrir_gestion_empleados(self):
         ventana_lista = tk.Toplevel(self)
@@ -253,16 +288,13 @@ class App(tk.Tk):
         doc.build(elementos)
         messagebox.showinfo("PDF Generado", f"Archivo guardado como '{archivo}'")
 
-
+    def abrir_registro_entrada_salida(self):
+        from gui_registro import abrir_registro_entrada_salida
+        abrir_registro_entrada_salida(self)
             
-    def placeholder_registro(self):
-        messagebox.showinfo("En desarrollo", 
-                            "La funcionalidad de Registro de Entrada/Salida estará disponible próximamente.")
-
-    def placeholder_reporte(self):
-        messagebox.showinfo("En desarrollo", 
-                            "La funcionalidad de Reportes Mensuales estará disponible próximamente.")
-
+    def abrir_ventana_reporte(self):
+        from gui_reporte import abrir_ventana_reporte
+        abrir_ventana_reporte(self)
 
 if __name__ == "__main__":
     app = App()

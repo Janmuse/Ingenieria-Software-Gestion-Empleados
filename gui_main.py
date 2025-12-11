@@ -293,10 +293,6 @@ class App(tk.Tk):
             from gui_registro import abrir_registro_entrada_salida
             abrir_registro_entrada_salida(self)
             
-    def placeholder_registro(self):
-        messagebox.showinfo("En desarrollo", 
-                            "La funcionalidad de Registro de Entrada/Salida estará disponible próximamente.")
-
     def placeholder_reporte(self):
         messagebox.showinfo("En desarrollo", 
                             "La funcionalidad de Reportes Mensuales estará disponible próximamente.")

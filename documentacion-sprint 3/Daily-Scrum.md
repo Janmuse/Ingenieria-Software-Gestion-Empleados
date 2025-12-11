@@ -63,5 +63,8 @@ No hubo
 
 Baqueiro DEV
 ¿Qué hice ayer?
-¿Que haré hoy?  
+Avance el modulo para la funcionalidad de los reportes
+¿Que haré hoy? 
+Completarlo
 Impedimentos: 
+No hubo

@@ -40,6 +40,28 @@ Participe en la reunión
 Ayude en la planeacion del sprint 3 
 Participar en la reunión
 ¿Que haré hoy?  
-Avanzar el modulo para la funcionalidad
-de los reportes
+Avanzar el modulo para la funcionalidadde los reportes
 Impedimentos: No huboo
+
+Día 3 Jorge PO/SM 
+¿Qué hice ayer? 
+Avanzar el modulo para la funcionalidadde los reportes
+Que haré hoy? 
+Completar la funcionalidad para los respaldos intengrandola en el main y eliminando errores de la función backup_mongodb
+Impedimentos: No hubieron
+
+Luis DEV
+¿Qué hice ayer?
+Avanzar en el módulo de la aplicación móvi
+Generar el módulo de gui_registro 
+
+¿Que haré hoy?  
+Seguir avanzando en la parte de la app 
+Completar la funcionalidad para generar reportes
+Impedimentos: 
+No hubo
+
+Baqueiro DEV
+¿Qué hice ayer?
+¿Que haré hoy?  
+Impedimentos: 

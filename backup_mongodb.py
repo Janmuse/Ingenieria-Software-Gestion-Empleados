@@ -17,11 +17,14 @@ def realizar_respaldo():
 
     fecha_actual = datetime.datetime.now().strftime("%Y-%m-%d_%H%M%S")
 
+    respaldo_completo = {}
     for coleccion in ["empleados", "registros", "usuarios"]:
         datos = list(db[coleccion].find({}))
-        nombre_archivo = os.path.join(directorio_backup, f"{coleccion}_{fecha_actual}.json")
-        with open(nombre_archivo, "w", encoding="utf-8") as file:
-            json.dump(datos, file, indent=4, default=str)
+        respaldo_completo[coleccion] = datos
+
+    nombre_archivo = os.path.join(directorio_backup, f"backup_{fecha_actual}.json")
+    with open(nombre_archivo, "w", encoding="utf-8") as file:
+        json.dump(respaldo_completo, file, indent=4, default=str)
 
     limpiar_antiguos_respaldo(directorio_backup)
     print(" Respaldo realizado exitosamente")
@@ -44,20 +47,17 @@ def restaurar_respaldo(ruta_json):
         db = client["control_personal"]
         with open(ruta_json, "r", encoding="utf-8") as file:
             datos = json.load(file)
-
-        
-        coleccion_nombre = ruta_json.split("_")[0].split(os.sep)[-1]
-
-        # Limpiar colección actual
-        db[coleccion_nombre].delete_many({})
-        documentos = []
-        for doc in datos:
-            if "_id" in doc:
-                del doc["_id"]
-            documentos.append(doc)
-
-        if documentos:
-            db[coleccion_nombre].insert_many(documentos)
+            # Restaurar todas las colecciones
+            for coleccion in ["empleados", "registros", "usuarios"]:
+                if coleccion in datos:
+                    db[coleccion].delete_many({})
+                    documentos = []
+                    for doc in datos[coleccion]:
+                        if "_id" in doc:
+                            del doc["_id"]
+                        documentos.append(doc)
+                    if documentos:
+                        db[coleccion].insert_many(documentos)
         return True
     except Exception as e:
         print(f" Error al restaurar: {e}")

@@ -222,7 +222,7 @@ def mostrar_resultados(root, resultados, app_root):
             res["nombre"],
             res["total_horas_normales"],
             res["total_horas_extras"],
-            f"Q{res['total_pago']:.2f}"
+            f"$ {res['total_pago']:.2f}"
         ))
 
     tree.pack(padx=20, pady=10, fill="both", expand=True)

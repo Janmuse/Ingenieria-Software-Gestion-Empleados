@@ -91,7 +91,6 @@ class App(tk.Tk):
 
      resultado = restaurar_respaldo(ruta)
      if resultado:
-         self.cargar_empleados()
          messagebox.showinfo("Éxito", "Respaldo restaurado correctamente.")
      else:
          messagebox.showerror("Error", "No se pudo restaurar el respaldo.")

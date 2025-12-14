@@ -1,0 +1,3 @@
+Se crea una una app movil con el objetivo de que los empleados puedan regristrar su entrada/salida y sea validada mediante la ubicacion gps 
+igualmente podran acceder a sus horas trabajadas, reportes y graficas, partiendo de esto el empleado podra saber el cobro por quincena
+todo se actulizara al servidor en monogodb para un regristo  unificado 

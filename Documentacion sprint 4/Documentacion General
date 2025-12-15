@@ -1,0 +1,231 @@
+1. Documento de Visión / Requerimientos
+1.1 Objetivo del Sistema
+
+Objetivo del Sistema
+El Sistema de Gestión de Empleados constituye una solución integral diseñada para administrar el ciclo completo de información laboral del personal de la organización. El sistema facilita el registro
+gestión y consulta de datos de empleados, con especial énfasis en el control preciso de asistencia, incluyendo el monitoreo de entradas, salidas y cálculo de horas laboradas efectivas.
+Desarrollado como una aplicación completamente autónoma con capacidad de operación local —sin dependencia de conectividad a internet—, el sistema proporciona funcionalidades avanzadas para 
+la generación de reportes detallados sobre jornadas laborales, análisis de desempeño y simulaciones de nómina.
+Esta solución tecnológica tiene como propósito optimizar los procesos administrativos de recursos humanos, garantizar la trazabilidad completa de la asistencia del personal y proporcionar información
+confiable para la toma de decisiones estratégicas, mediante un seguimiento eficiente y sistemático de la actividad laboral.
+
+1.2 Usuarios del Sistema
+-Empleado
+
+*Registro de entrada y salida
+
+*Consulta de historial personal
+
+*Visualización de horas trabajadas y salario estimado
+
+--Administrador / Supervisor (versión de escritorio en Python)
+
+*Gestión de empleados (alta, edición y eliminación)
+
+*Consulta de reportes y generación de PDFs
+
+*Control general del personal
+
+
+
+1.3 Requerimientos Funcionales
+
+RF-01 Registrar empleados (alta, edición y eliminación)
+RF-02 Registrar entradas y salidas de empleados
+RF-03 Calcular automáticamente horas trabajadas por día
+RF-04 Generar resumen semanal y mensual
+RF-05 Simular nómina quincenal a partir de horas trabajadas
+RF-06 Visualizar historial de registros
+RF-07 Mostrar gráficas de horas trabajadas
+RF-08 Autenticación básica mediante PIN
+
+
+
+1.4 Requerimientos No Funcionales
+
+RNF-01: El sistema debe funcionar sin conexión a internet
+
+RNF-02: La aplicación móvil debe ser compatible con Android 8.0 o superior
+
+RNF-03: Persistencia local usando base de datos
+
+RNF-04: Interfaz intuitiva y fácil de usar
+
+RNF-05: Tiempo de respuesta menor a 1 segundo en operaciones comunes
+
+
+1.5 Cronograma Final de Actividades (Planeado vs Real)
+Sprint	   Planeado     	Real       	Actividades
+Sprint 1	3 dias	   4 dias	     Análisis, definición de requerimientos
+Sprint 2	3 dias	   3 dias	     Desarrollo sistema Python (GUI + MongoDB)
+Sprint 3	3 dias	   3 dias	     Resúmenes, gráficas, UI/UX y documentación
+Sprint 4	3 dias	   5 dias	     App Android (registro y base de datos local)
+
+
+1.6 Alcance Final del Producto
+
+✔ Sistema de escritorio funcional en Python
+✔ Aplicación móvil Android en Kotlin + Jetpack Compose
+✔ Control de asistencia y cálculo de horas
+✔ Resúmenes semanales y mensuales
+✔ Simulación de nómina quincenal
+✔ Funcionamiento offline
+
+
+
+
+
+1.7 Costo Total del Desarrollo (Estimado)
+Concepto	                 Horas	          Costo  estimado
+Análisis y diseño	         40 h             	$6,000 MXN
+Desarrollo Python	         60 h	              $9,000 MXN
+Desarrollo Android         70 h	              $10,500 MXN
+Pruebas y documentación    30 h	              $4,500 MXN
+Total                    	 200 h	                   $30,000 MXN
+
+
+2. Arquitectura del Sistema
+
+2.1 Descripción General
+El sistema implementa una arquitectura multicapa distribuida, compuesta por dos aplicaciones cliente independientes que operan de manera autónoma, cada una con su propia capa de persistencia local. 
+Esta arquitectura garantiza la disponibilidad del sistema sin dependencia de infraestructura de red o servicios en la nube.
+
+2.2 Componentes Principales
+El ecosistema del sistema está conformado por los siguientes componentes:
+Aplicación de Escritorio
+
+Tecnologías: Python + Tkinter
+Orientada a funciones administrativas y de gestión
+Base de datos local independiente
+
+Aplicación Móvil
+
+Tecnologías: Android + Kotlin
+Enfocada en registro de asistencia y consultas en campo
+Base de datos local independiente
+
+2.3 Modelo Arquitectónico por Capas
+El sistema adopta un patrón arquitectónico de tres capas, aplicado de manera consistente en ambas plataformas:
+Capa de Presentación (UI/UX)
+
+Gestiona la interfaz de usuario y la interacción con el sistema
+Captura eventos y presenta información al usuario final
+Implementación específica por plataforma (Tkinter para escritorio, Android SDK para móvil)
+
+Capa de Lógica de Negocio
+
+Contiene las reglas de negocio y procesos centrales del sistema
+Coordina el flujo de información entre la presentación y la persistencia
+Ejecuta validaciones, cálculos y operaciones de transformación de datos
+
+Capa de Persistencia
+
+Gestiona el acceso y almacenamiento de datos
+Abstrae las operaciones de base de datos
+Garantiza la integridad y consistencia de la información
+
+┌─────────────────────────────────────────────────────────┐
+│                   CAPA DE PRESENTACIÓN                  │
+├──────────────────────────┬──────────────────────────────┤
+│   Aplicación Escritorio  │    Aplicación Móvil          │
+│   (Python + Tkinter)     │    (Android + Kotlin)        │
+└──────────────┬───────────┴──────────────┬───────────────┘
+               │                          │
+┌──────────────▼──────────────────────────▼───────────────┐
+│              CAPA DE LÓGICA DE NEGOCIO                   │
+│  • Gestión de empleados  • Control de asistencia        │
+│  • Generación de reportes • Cálculos de nómina          │
+└──────────────┬──────────────────────────┬───────────────┘
+               │                          │
+┌──────────────▼──────────────┬───────────▼───────────────┐
+│     CAPA DE PERSISTENCIA     │   CAPA DE PERSISTENCIA    │
+│   Base de Datos Local (BD1)  │  Base de Datos Local (BD2)│
+│        Escritorio            │         Móvil             │
+└──────────────────────────────┴───────────────────────────┘
+
+2.5 Características Arquitectónicas
+Independencia de Plataformas
+
+Cada aplicación opera de manera autónoma con su propio repositorio de datos
+No existe dependencia de sincronización en tiempo real
+
+Operación Offline
+
+Funcionalidad completa sin requerimientos de conectividad
+Todos los datos se gestionan localmente
+
+Escalabilidad Modular
+
+La arquitectura por capas facilita el mantenimiento y evolución del sistema
+Posibilidad de incorporar nuevas funcionalidades sin afectar componentes existentes
+
+2.2 Tecnologías Utilizadas
+El sistema integra un stack tecnológico robusto y moderno, seleccionado estratégicamente para garantizar rendimiento, mantenibilidad y experiencia de usuario óptima en ambas plataformas.
+2.2.1 Aplicación de Escritorio
+Lenguaje de Programación
+
+Python 3: Lenguaje de alto nivel que proporciona flexibilidad, amplio ecosistema de librerías y facilidad de mantenimiento para el desarrollo de aplicaciones empresariales.
+
+Framework de Interfaz Gráfica
+
+Tkinter: Biblioteca estándar de Python para desarrollo de interfaces gráficas de usuario, que ofrece portabilidad multiplataforma y bajo consumo de recursos.
+
+Sistema de Persistencia
+
+MongoDB: Base de datos NoSQL orientada a documentos que proporciona flexibilidad en el esquema de datos, alto rendimiento en operaciones locales y escalabilidad horizontal.
+
+Generación de Reportes
+
+ReportLab: Biblioteca especializada para la generación programática de documentos PDF con capacidades avanzadas de diseño y formato, ideal para reportes empresariales.
+
+2.2.2 Aplicación Móvil
+Lenguaje de Programación
+
+Kotlin: Lenguaje oficial para desarrollo Android, moderno y conciso, que ofrece seguridad de tipos, interoperabilidad con Java y sintaxis expresiva.
+
+Framework de Interfaz de Usuario
+
+Jetpack Compose: Toolkit declarativo moderno para construcción de interfaces nativas Android, que simplifica el desarrollo UI mediante programación reactiva y reduce significativamente el código boilerplate.
+
+Sistema de Persistencia
+
+Room: Biblioteca de abstracción sobre SQLite que proporciona una capa de acceso a datos robusta con validación en tiempo de compilación, mapeo objeto-relacional y soporte para operaciones asíncronas.
+
+Diseño de Interfaz
+
+Material Design 3: Sistema de diseño de Google que garantiza consistencia visual, accesibilidad y adherencia a las mejores prácticas de UX/UI en la plataforma Android.
+
+2.2.3 Justificación Técnica
+La selección de estas tecnologías responde a criterios específicos:
+
+Madurez y Estabilidad: Todas las tecnologías seleccionadas cuentan con comunidades activas, documentación exhaustiva y soporte a largo plazo.
+Rendimiento Local: Tanto MongoDB como Room están optimizados para operaciones de lectura/escritura en entornos locales sin latencia de red.
+Productividad de Desarrollo: Las herramientas modernas como Jetpack Compose y las capacidades de Python aceleran el ciclo de desarrollo y reducen errores.
+Experiencia de Usuario: Material Design 3 y las capacidades gráficas de Tkinter/ReportLab aseguran interfaces intuitivas y documentos profesionales.
+
+
+
+
+Aquí tienes una versión profesional y ampliada del diseño de base de datos:
+
+2.3 Diseño de Base de Datos (Modelo Lógico)
+El modelo de datos del sistema está estructurado para soportar una gestión jerárquica del personal y un control exhaustivo de asistencia, garantizando la integridad referencial y trazabilidad de todas las operaciones.
+2.3.1 Entidades Principales
+Entidad: Empleado
+Almacena la información completa del personal de la organización, incluyendo datos personales, laborales y jerárquicos.
+CampoTipoDescripciónRestriccionesidString/ObjectIdIdentificador único del empleadoPK, Obligatorio, ÚniconombreStringNombre completo del empleadoObligatorio, 3-100 caracteresdpiStringDocumento Personal de IdentificaciónObligatorio, Único, 13 dígitoscargoStringPuesto o posición laboralObligatoriodepartamentoStringÁrea o departamento de adscripciónObligatoriosalario_horaDecimalTarifa por hora trabajadaObligatorio, > 0tipo_empleadoEnumCategoría del empleadoValores: OPERATIVO, SUPERVISOR, JEFE_AREA, RECURSOS_HUMANOS, ADMINISTRATIVOsupervisor_idString/ObjectIdID del supervisor directoFK → Empleado(id), Nullablefecha_ingresoDateFecha de inicio de relación laboralObligatorioestadoEnumEstado actual del empleadoValores: ACTIVO, INACTIVO, SUSPENDIDO, VACACIONESemailStringCorreo electrónico corporativoOpcional, Único si existetelefonoStringNúmero de contactoOpcionalfecha_creacionDateTimeTimestamp de creación del registroAuto-generadofecha_modificacionDateTimeTimestamp de última actualizaciónAuto-actualizado
+Relaciones:
+
+Auto-referencial: Un empleado puede supervisar a múltiples empleados (relación 1:N)
+Con Registro: Un empleado tiene múltiples registros de asistencia (relación 1:N)
+
+
+Entidad: Registro
+Captura cada evento de entrada o salida del personal, permitiendo el cálculo preciso de horas trabajadas y generación de reportes de asistencia.
+CampoTipoDescripciónRestriccionesidString/ObjectIdIdentificador único del registroPK, Obligatorio, Únicoempleado_idString/ObjectIdID del empleado asociadoFK → Empleado(id), ObligatoriotipoEnumTipo de marcaciónValores: ENTRADA, SALIDA; Obligatoriofecha_horaDateTimeTimestamp exacto de la marcaciónObligatorio, IndexadoubicacionStringPunto de registro (terminal/dispositivo)Opcionalmetodo_registroEnumMedio utilizado para el registroValores: MANUAL, BIOMETRICO, MOVIL, WEBobservacionesStringNotas o comentarios adicionalesOpcional, Max 500 caracteresaprobado_porString/ObjectIdID del supervisor que aprobóFK → Empleado(id), Nullableestado_registroEnumEstado de validaciónValores: PENDIENTE, APROBADO, RECHAZADO, CORREGIDOlatitudDecimalCoordenada geográfica (si aplica)Opcional, -90 a 90longitudDecimalCoordenada geográfica (si aplica)Opcional, -180 a 180fecha_creacionDateTimeTimestamp de creación del registroAuto-generado
+Relaciones:
+
+Con Empleado (empleado_id): Relación N:1 (muchos registros pertenecen a un empleado)
+Con Empleado (aprobado_por): Relación N:1 (muchos registros pueden ser aprobados por un supervisor)
+
+
